@@ -12,23 +12,24 @@ from random import sample
 
 sys.path.insert(0,'./cityscapesScripts/cityscapesscripts/evaluation')
 from city_meanIU import city_meanIU
+K.set_image_data_format('channels_first')
 
 #parameters
 image_size=[320,640]
-source_batch_size=4
-target_batch_size=4
+source_batch_size=2
+target_batch_size=2
 batch_size=source_batch_size+target_batch_size
 output_name='SYNTHIA_FCN_DA.h5'
 class_number=22
-
+print("********************")
 #download pretrained SYNTHIA network
 #you can start from scratch if you want of course
 url='http://crcv.ucf.edu/data/adaptationseg/SYNTHIA_FCN.h5'
-import urllib.request
+'''import urllib.request
 import shutil
 with urllib.request.urlopen(url) as response, open('./SYNTHIA_FCN.h5', 'wb') as out_file:
     shutil.copyfileobj(response, out_file)
-
+'''
 #set valid classes bool
 index_array=np.zeros((class_number))
 index_array[0:12]=1.
